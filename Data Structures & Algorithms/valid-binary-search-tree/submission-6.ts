@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     constructor(val = 0, left = null, right = null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    /**
+     * @param {TreeNode} root
+     * @return {boolean}
+     */
+    isValidBST(root: TreeNode | null): boolean {
+        return this.isValid(root);
+    }
+
+    isValid(node: TreeNode, left: number = -Infinity, right: number = Infinity) {
+        if (!node) return true;
+        if (!(node.val > left && node.val < right)) return false;
+        return this.isValid(node.left, left, node.val) && this.isValid(node.right, node.val, right)
+    }
+}
